@@ -31,13 +31,24 @@ pipeline {
                 }
             }
         }
-        
+         
         stage('Push to Docker Hub') {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
                         sh "docker push dcgnohp/adservice:${IMAGE_TAG}"
                     }
+                }
+            }
+        }
+
+        stage('Create ECR Repository If Not Exists') {
+            steps {
+                script {
+                    sh """
+                        aws ecr describe-repositories --repository-names ${ECR_REPOSITORY} --region ${AWS_REGION} || \
+                        aws ecr create-repository --repository-name ${ECR_REPOSITORY} --region ${AWS_REGION}
+                    """
                 }
             }
         }
