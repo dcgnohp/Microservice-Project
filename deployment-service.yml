@@ -30,6 +30,7 @@ spec:
           readOnlyRootFilesystem: true
         # image: dcgnohp/emailservice:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/emailservice:latest  
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         env:
@@ -84,6 +85,7 @@ spec:
         - name: server
           # image: dcgnohp/checkoutservice:latest
           image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/checkoutservice:latest
+          imagePullPolicy: Always
           ports:
           - containerPort: 5050
           readinessProbe:
@@ -147,6 +149,7 @@ spec:
       - name: server
         # image: dcgnohp/recommendationservice:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/recommendationservice:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -205,6 +208,7 @@ spec:
         - name: server
           # image: dcgnohp/frontend:latest
           image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/frontend:latest
+          imagePullPolicy: Always
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -242,14 +246,14 @@ spec:
             value: "adservice:9555"
           # # ENV_PLATFORM: One of: local, gcp, aws, azure, onprem, alibaba
           # # When not set, defaults to "local" unless running in GKE, otherwies auto-sets to gcp
-          # - name: ENV_PLATFORM
-          #   value: "aws"
+          - name: ENV_PLATFORM
+            value: "aws"
           - name: ENABLE_PROFILER
             value: "0"
           # - name: CYMBAL_BRANDING
           #   value: "true"
-          # - name: FRONTEND_MESSAGE
-          #   value: "Replace this with a message you want to display on all pages."
+          - name: FRONTEND_MESSAGE
+            value: "This is a test message"
           resources:
             requests:
               cpu: 100m
@@ -303,6 +307,7 @@ spec:
       - name: server
         # image: dcgnohp/paymentservice:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/paymentservice:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 50051
         env:
@@ -356,6 +361,7 @@ spec:
       - name: server
         # image: dcgnohp/productcatalogservice:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/productcatalogservice:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 3550
         env:
@@ -409,6 +415,7 @@ spec:
       - name: server
         # image: dcgnohp/cartservice:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/cartservice:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 7070
         env:
@@ -474,6 +481,7 @@ spec:
           readOnlyRootFilesystem: true
         # image: dcgnohp/loadgenerator:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/loadgenerator:latest
+        imagePullPolicy: Always
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -506,6 +514,7 @@ spec:
       - name: server
         # image: dcgnohp/currencyservice:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/currencyservice:latest
+        imagePullPolicy: Always
         ports:
         - name: grpc
           containerPort: 7000
@@ -559,6 +568,7 @@ spec:
       - name: server
         # image: dcgnohp/shippingservice:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/shippingservice:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 50051
         env:
@@ -610,6 +620,7 @@ spec:
       containers:
       - name: redis
         image: redis:alpine
+        imagePullPolicy: Always
         ports:
         - containerPort: 6379
         readinessProbe:
@@ -666,6 +677,7 @@ spec:
       - name: server
         # image: dcgnohp/adservice:latest
         image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/adservice:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 9555
         env:
