@@ -28,7 +28,8 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: dcgnohp/emailservice:latest
+        # image: dcgnohp/emailservice:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/emailservice:latest  
         ports:
         - containerPort: 8080
         env:
@@ -81,7 +82,8 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: dcgnohp/checkoutservice:latest
+          # image: dcgnohp/checkoutservice:latest
+          image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/checkoutservice:latest
           ports:
           - containerPort: 5050
           readinessProbe:
@@ -143,7 +145,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: dcgnohp/recommendationservice:latest
+        # image: dcgnohp/recommendationservice:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/recommendationservice:latest
         ports:
         - containerPort: 8080
         readinessProbe:
@@ -200,7 +203,8 @@ spec:
       serviceAccountName: default
       containers:
         - name: server
-          image: dcgnohp/frontend:latest
+          # image: dcgnohp/frontend:latest
+          image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/frontend:latest
           ports:
           - containerPort: 8080
           readinessProbe:
@@ -297,7 +301,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: dcgnohp/paymentservice:latest
+        # image: dcgnohp/paymentservice:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/paymentservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -349,7 +354,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: dcgnohp/productcatalogservice:latest
+        # image: dcgnohp/productcatalogservice:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/productcatalogservice:latest
         ports:
         - containerPort: 3550
         env:
@@ -401,7 +407,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: dcgnohp/cartservice:latest
+        # image: dcgnohp/cartservice:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/cartservice:latest
         ports:
         - containerPort: 7070
         env:
@@ -465,7 +472,8 @@ spec:
               - ALL
           privileged: false
           readOnlyRootFilesystem: true
-        image: dcgnohp/loadgenerator:latest
+        # image: dcgnohp/loadgenerator:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/loadgenerator:latest
         env:
         - name: FRONTEND_ADDR
           value: "frontend:80"
@@ -496,7 +504,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: dcgnohp/currencyservice:latest
+        # image: dcgnohp/currencyservice:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/currencyservice:latest
         ports:
         - name: grpc
           containerPort: 7000
@@ -548,7 +557,8 @@ spec:
       serviceAccountName: default
       containers:
       - name: server
-        image: dcgnohp/shippingservice:latest
+        # image: dcgnohp/shippingservice:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/shippingservice:latest
         ports:
         - containerPort: 50051
         env:
@@ -654,7 +664,8 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: dcgnohp/adservice:latest
+        # image: dcgnohp/adservice:latest
+        image: 453182569154.dkr.ecr.ap-southeast-2.amazonaws.com/adservice:latest
         ports:
         - containerPort: 9555
         env:
