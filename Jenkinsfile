@@ -5,10 +5,19 @@ pipeline {
         AWS_ACCOUNT_ID = '453182569154'
         AWS_REGION = 'ap-southeast-2'
         ECR_REPOSITORY = 'frontend'
-        IMAGE_TAG = 'latest'
+        DOCKER_REPO = 'dcgnohp/frontend'
     }
 
     stages {
+        stage('Prepare Image Tag') {
+            steps {
+                script {
+                    IMAGE_TAG = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    echo "Image tag: ${IMAGE_TAG}"
+                }
+            }
+        }
+
         stage('Login to Amazon ECR') {
             steps {
                 script {
@@ -33,21 +42,19 @@ pipeline {
         stage('Build & Tag Docker Image') {
             steps {
                 script {
-                    withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                        sh """
-                            docker build -t dcgnohp/frontend:${IMAGE_TAG} .
-                            docker tag dcgnohp/frontend:${IMAGE_TAG} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
-                        """
-                    }
+                    sh """
+                        docker build -t ${DOCKER_REPO}:${IMAGE_TAG} .
+                        docker tag ${DOCKER_REPO}:${IMAGE_TAG} ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/${ECR_REPOSITORY}:${IMAGE_TAG}
+                    """
                 }
             }
         }
-        
+
         stage('Push to Docker Hub') {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                        sh "docker push dcgnohp/frontend:${IMAGE_TAG}"
+                        sh "docker push ${DOCKER_REPO}:${IMAGE_TAG}"
                     }
                 }
             }
